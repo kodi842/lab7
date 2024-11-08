@@ -5,7 +5,7 @@
 #define N 5
 
 // Функция для генерации случайной матрицы смежности
-void M(int matrix[N][N]) {
+void genM(int matrix[N][N]) {
     srand(time(NULL));
     for (int i = 0; i < N; i++) {
         for (int j = i; j < N; j++) {
@@ -31,7 +31,7 @@ void printM(int matrix[N][N]) {
     }
 }
 
-//Обход матрицы
+// Обход матрицы
 void DFS(int matrix[N][N], int vis[N], int node) {
     vis[node] = 1;
     printf("%d ", node);
@@ -47,7 +47,7 @@ int main() {
     int matrix[N][N];
     int vis[N] = {0};
 
-    genM(matrix);
+    genM(matrix); // Используем правильное имя функции
     printM(matrix);
 
     printf("Обход в глубину (DFS):\n");
@@ -55,4 +55,3 @@ int main() {
 
     return 0;
 }
-
