@@ -32,13 +32,22 @@ void printM(int **matrix, int n) {
 // Обход матрицы
 void DFS(int **matrix, int *vis, int node, int n) {
     vis[node] = 1;
-    printf("%d ", node);
+    printf("Посещенная вершина: %d\n", node);
 
     for (int i = 0; i < n; i++) {
         if (matrix[node][i] == 1 && !vis[i]) {
             DFS(matrix, vis, i, n);
         }
     }
+}
+
+// Функция для вывода массива посещенных вершин
+void printVisited(int *vis, int n) {
+    printf("Посещенные вершины: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", vis[i]);
+    }
+    printf("\n");
 }
 
 int main() {
@@ -62,6 +71,8 @@ int main() {
 
     printf("Обход в глубину (DFS) начиная с вершины %d:\n", start_node);
     DFS(matrix, vis, start_node, n); // Начало обхода с заданной вершины
+
+    printVisited(vis, n); // Вывод массива посещенных вершин
 
     // Освобождение выделенной памяти
     for (int i = 0; i < n; i++) {
