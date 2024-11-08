@@ -3,18 +3,17 @@
 #include <time.h>
 
 // Функция для генерации случайной матрицы смежности
-void genM(int **matrix, int n) {
-    srand(time(NULL));
-    for (int i = 0; i < n; i++) {
-        for (int j = i; j < n; j++) {
-            if (i == j) {
-                matrix[i][j] = 0; // Нет петель
-            } else {
-                int edge = rand() % 2; // Случайное ребро (0 или 1)
-                matrix[i][j] = edge;
-                matrix[j][i] = edge; // Симметричное значение для неориентированного графа
-            }
-        }
+int create **G(int size){
+    int **G = NULL;
+    G=(int**)malloc(size*sizeof(int *));
+    for(int i = 0; i<size; i++){
+        G[i]=(int *)malloc(size*sizeof(int));
+    }
+    for(int i = 0; i < size; i++){
+        for (int j = i; j<size; j++)
+        G[i][j]=rand()2%;
+        if(i==j) G[i][j]=0;
+        G[i][j]=G[i][j];
     }
 }
 
@@ -43,7 +42,7 @@ void DFS(int **matrix, int *vis, int node, int n) {
 
 // Функция для вывода массива посещенных вершин
 void printVisited(int *vis, int n) {
-    printf("Посещенные вершины: ");
+    printf("vis: ");
     for (int i = 0; i < n; i++) {
         printf("%d ", vis[i]);
     }
@@ -70,9 +69,9 @@ int main() {
     scanf("%d", &start_node);
 
     printf("Обход в глубину (DFS) начиная с вершины %d:\n", start_node);
-    DFS(matrix, vis, start_node, n); // Начало обхода с заданной вершины
+    DFS(matrix, vis, start_node, n);
 
-    printVisited(vis, n); // Вывод массива посещенных вершин
+    printVisited(vis, n);
 
     // Освобождение выделенной памяти
     for (int i = 0; i < n; i++) {
@@ -82,4 +81,21 @@ int main() {
     free(vis);
 
     return 0;
+}
+
+
+
+
+int create **G(int size){
+    int **G = NULL;
+    G=(int**)malloc(size*sizeof(int *));
+    for(int i = 0; i<size; i++){
+        G[i]=(int *)malloc(size*sizeof(int));
+    }
+    for(int i = 0; i < size; i++){
+        for (int j = i; j<size; j++)
+        G[i][j]=rand()2%;
+        if(i==j) G[i][j]=0;
+        G[i][j]=G[i][j];
+    }
 }
