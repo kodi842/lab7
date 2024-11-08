@@ -1,1 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define NODES 5
+
+// Функция для генерации случайной матрицы смежности
+void generateAdjacencyMatrix(int matrix[NODES][NODES]) {
+    srand(time(NULL));
+    for (int i = 0; i < NODES; i++) {
+        for (int j = i; j < NODES; j++) {
+            if (i == j) {
+                matrix[i][j] = 0; // Нет петель
+            } else {
+                int edge = rand() % 2; // Случайное ребро (0 или 1)
+                matrix[i][j] = edge;
+                matrix[j][i] = edge; // Симметричное значение для неориентированного графа
+            }
+        }
+    }
+}
+
+// Функция для вывода матрицы смежности
+void printAdjacencyMatrix(int matrix[NODES][NODES]) {
+    printf("Матрица смежности:\n");
+    for (int i = 0; i < NODES; i++) {
+        for (int j = 0; j < NODES; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Функция DFS
+void DFS(int matrix[NODES][NODES], int visited[NODES], int node) {
+    visited[node] = 1;
+    printf("%d ", node);
+
+    for (int i = 0; i < NODES; i++) {
+        if (matrix[node][i] == 1 && !visited[i]) {
+            DFS(matrix, visited, i);
+        }
+    }
+}
+
+int main() {
+    int matrix[NODES][NODES];
+    int visited[NODES] = {0};
+
+    generateAdjacencyMatrix(matrix);
+    printAdjacencyMatrix(matrix);
+
+    printf("Обход в глубину (DFS):\n");
+    DFS(matrix, visited, 0); // Начало обхода с вершины 0
+
+    return 0;
+}
 
