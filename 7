@@ -2,23 +2,24 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Функция для генерации случайной матрицы смежности
-int create **G(int size){
+int **createG(int size){
     int **G = NULL;
     G=(int**)malloc(size*sizeof(int *));
     for(int i = 0; i<size; i++){
         G[i]=(int *)malloc(size*sizeof(int));
     }
     for(int i = 0; i < size; i++){
-        for (int j = i; j<size; j++)
-        G[i][j]=rand()2%;
+        for (int j = i; j<size; j++){
+        G[i][j]=rand()%2;
         if(i==j) G[i][j]=0;
         G[i][j]=G[i][j];
+            
+        }
+        
     }
 }
-
 // Функция для вывода матрицы смежности
-void printM(int **matrix, int n) {
+void printG(int **matrix, int n) {
     printf("Матрица смежности:\n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -62,8 +63,8 @@ int main() {
     }
     int *vis = (int *)calloc(n, sizeof(int));
 
-    genM(matrix, n);
-    printM(matrix, n);
+    createG(n);
+    printG(matrix, n);
 
     printf("Введите начальную вершину для обхода (от 0 до %d): ", n - 1);
     scanf("%d", &start_node);
@@ -81,21 +82,5 @@ int main() {
     free(vis);
 
     return 0;
-}
-
-
-
-
-int create **G(int size){
-    int **G = NULL;
-    G=(int**)malloc(size*sizeof(int *));
-    for(int i = 0; i<size; i++){
-        G[i]=(int *)malloc(size*sizeof(int));
-    }
-    for(int i = 0; i < size; i++){
-        for (int j = i; j<size; j++)
-        G[i][j]=rand()2%;
-        if(i==j) G[i][j]=0;
-        G[i][j]=G[i][j];
-    }
+        
 }
